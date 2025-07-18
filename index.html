@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future-Forward Business Insights for India: Interactive Report by AishNar Digital</title>
+    <meta name="description" content="Explore promising, low-competition business ideas in India with this interactive report. Discover insights on Agri-Tech, Senior Care, EV Charging, Vernacular Learning, Waste Management, Mental Wellness, and Sustainable Packaging for future growth.">
+    <meta name="keywords" content="India business ideas, low competition business, future business India, Agri-Tech, Senior Care, EV Charging, Vernacular Learning, Waste Management, Mental Wellness, Sustainable Packaging, Indian market opportunities, startup India, AishNar Digital">
+    <!-- Chosen Palette: Muted Earth Tones & Soft Blues/Greens with a touch of deep purple -->
+    <!-- Application Structure Plan: The application is structured as an interactive dashboard. The top section presents a master "Opportunity Radar" chart, allowing users to immediately compare all business ideas across key metrics (Scalability, Profitability, Low Competition, Low Investment). Below this, users can navigate through clickable cards, one for each business idea. Clicking a card dynamically updates the main content area with a detailed breakdown of that specific idea. This two-layer structure (overview followed by on-demand detail) was chosen to facilitate easy comparison and prevent overwhelming the user with information. It encourages exploration by letting the user guide their own journey, starting with a high-level visual and then drilling into the specifics that interest them most. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: High-level comparison of all ideas across four metrics. -> Goal: Compare. -> Viz/Presentation Method: Radar Chart. -> Interaction: Hover over points to see scores. -> Justification: A radar chart is ideal for comparing multiple subjects (business ideas) across multiple quantitative dimensions simultaneously, providing a quick, holistic "shape" of each opportunity. -> Library/Method: Chart.js/Canvas.
+        - Report Info: Switching between different business ideas. -> Goal: Organize/Navigate. -> Viz/Presentation Method: Interactive HTML cards with hover/active states. -> Interaction: Click to load detailed content. -> Justification: This is an intuitive and standard UI pattern for single-page applications, providing clear visual feedback on the user's current selection. -> Library/Method: HTML/CSS/JS.
+        - Report Info: Potential revenue streams for each idea. -> Goal: Inform (Proportions). -> Viz/Presentation Method: Donut Chart. -> Interaction: Hover over segments for details. -> Justification: A donut chart effectively visualizes the composition of a whole, making it easy to understand the potential business model mix at a glance. -> Library/Method: Chart.js/Canvas.
+        - Report Info: Detailed analysis (Problem, Solution, Target Audience, etc.). -> Goal: Inform. -> Viz/Presentation Method: Structured text blocks with icons and clear typography. -> Interaction: Content is dynamically loaded on card click. -> Justification: Organizes qualitative information for maximum readability and scannability, using icons to visually anchor key concepts. -> Library/Method: HTML/Tailwind CSS/JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FDFBF8 0%, #F5F7FA 50%, #ECEFF4 100%);
+            background-size: 200% 200%;
+            animation: subtleGradientShift 20s ease infinite alternate;
+            color: #383838;
+        }
+        @keyframes subtleGradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px; /* Slightly wider for better visual impact */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Adjusted height */
+            max-height: 450px; /* Adjusted max height */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 420px; /* Taller on larger screens */
+            }
+        }
+        .active-card {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15), 0 6px 10px -3px rgba(0, 0, 0, 0.08);
+            border-color: #5A67D8; /* Muted blue border */
+            background-color: #F0F4F8; /* Subtle background for active state */
+        }
+        .nav-card {
+            transition: all 0.3s ease-in-out;
+            border-color: #E2E8F0; /* Light border for inactive cards */
+        }
+        .nav-card:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.1), 0 3px 5px -2px rgba(0, 0, 0, 0.05);
+            border-color: #9DA6E4; /* Lighter blue on hover */
+        }
+        .content-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #5A67D8; /* Muted blue spinner */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            display: none; /* Hidden by default */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 tracking-tight leading-tight">Future-Forward Business Insights for India</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">An interactive exploration of high-potential, low-competition niches poised for significant growth in the evolving Indian market. Discover opportunities solving real-world challenges with strategic advantages.</p>
+        </header>
+
+        <main>
+            <section id="comparison" class="mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 text-gray-800">Opportunity Radar: Comparative Analysis</h2>
+                <p class="text-center text-gray-500 mb-6 max-w-2xl mx-auto">This radar chart provides a comparative snapshot of each business idea across four key dimensions: Scalability, Profitability, Low Competition, and Low Investment. A larger, more balanced shape indicates a stronger overall opportunity.</p>
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="navigation" class="mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-800">Explore Key Business Ideas</h2>
+                <div id="idea-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                </div>
+            </section>
+
+            <section id="details-section" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 relative">
+                <div id="loading-spinner" class="spinner absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 rounded-2xl z-10"></div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 py-6 border-t border-gray-200">
+            <p class="text-gray-500">Interactive Report generated on <span id="report-date"></span>.</p>
+            <p class="text-sm text-gray-400 mt-1">Data and analysis are based on market trends up to Q2 2025.</p>
+            <p class="text-sm text-gray-500 mt-2">Published by <a href="https://aishnar.ct.ws" target="_blank" class="text-blue-600 hover:underline font-medium">AishNar Digital</a></p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const businessIdeas = [
+                {
+                    id: 'agritech',
+                    name: 'Hyperlocal Agri-Tech Platform',
+                    icon: '🌿',
+                    short_desc: 'Connecting farmers directly with local businesses and consumers using a tech-enabled supply chain.',
+                    problem: 'Significant post-harvest losses (up to 30%) due to inefficient supply chains, multiple intermediaries, and lack of real-time market data for farmers.',
+                    solution: 'A mobile-first platform providing demand forecasting, optimized logistics, and a direct marketplace. This reduces waste, ensures fair pricing for farmers, and delivers fresh produce to consumers and businesses (restaurants, hotels).',
+                    target_audience: 'Small to medium-scale farmers in Tier-2/3 cities, local restaurants, grocery stores, and urban consumers seeking fresh produce.',
+                    business_model: [
+                        { label: 'Commission on Transactions', value: 50 },
+                        { label: 'Logistics & Warehousing Fees', value: 30 },
+                        { label: 'Premium Data Analytics (B2B)', value: 20 },
+                    ],
+                    competitive_landscape: {
+                        level: 25,
+                        text: 'Low to Medium. While large players like Ninjacart and DeHaat exist, the hyperlocal, small-farmer-focused niche in Tier-2/3 cities is largely underserved. Competition is fragmented and often non-tech-based.'
+                    },
+                    leverage_factors: 'Leverages Digital India infrastructure and can tap into government subsidies for agricultural startups (e.g., Agri-Udaan). Growing demand for farm-to-table models.',
+                    radarData: [8, 7, 7, 6] 
+                },
+                {
+                    id: 'seniorcare',
+                    name: 'Personalized Senior Care Services',
+                    icon: '👵',
+                    short_desc: 'Tech-enabled platform for non-medical, personalized at-home care and companionship for the elderly.',
+                    problem: 'India\'s elderly population is projected to reach ~300 million by 2050. Many urban seniors live alone as children move for work, leading to a need for reliable non-medical care, companionship, and emergency assistance.',
+                    solution: 'A subscription-based service offering verified caregivers for companionship, daily chores, tech assistance, and health monitoring coordination. An integrated app for families provides updates and peace of mind.',
+                    target_audience: 'Urban and semi-urban elderly individuals (65+), and their children living in India or abroad (NRIs).',
+                    business_model: [
+                        { label: 'Monthly Subscription Plans', value: 70 },
+                        { label: 'On-Demand Service Fees', value: 20 },
+                        { label: 'Specialized Product Sales', value: 10 },
+                    ],
+                    competitive_landscape: {
+                        level: 20,
+                        text: 'Low. The market is highly fragmented with unorganized local providers. Few organized, tech-enabled players exist, presenting a significant opportunity for a trusted, scalable brand.'
+                    },
+                    leverage_factors: 'Addresses a growing demographic shift. High emotional value and recurring revenue potential. Can integrate with health-tech APIs and smart home devices for enhanced safety features.',
+                    radarData: [7, 8, 8, 5]
+                },
+                {
+                    id: 'evcharging',
+                    name: 'EV Charging & Management SaaS',
+                    icon: '⚡',
+                    short_desc: 'Software-as-a-Service for managing EV charging stations in residential and commercial complexes.',
+                    problem: 'As EV adoption rises, residential societies and commercial buildings need a simple way to install, manage, and monetize charging stations without complex technical overhead or high upfront costs.',
+                    solution: 'A SaaS platform that provides owners with a dashboard for monitoring usage, setting pricing, processing payments, and managing load balancing. Offer a "Charging-as-a-Service" model including hardware leasing.',
+                    target_audience: 'Residential welfare associations (RWAs), commercial real estate owners, co-working spaces, and fleet operators.',
+                    business_model: [
+                        { label: 'SaaS Subscription Fee', value: 60 },
+                        { label: 'Hardware Leasing & Installation', value: 25 },
+                        { label: 'Transaction Processing Fee', value: 15 },
+                    ],
+                    competitive_landscape: {
+                        level: 40,
+                        text: 'Medium. Players like Tata Power and ChargeZone are focused on public highway charging. The B2B SaaS niche for private property management is less saturated, offering a clear entry point.'
+                    },
+                    leverage_factors: 'Directly supports the government\'s FAME-II scheme and national EV goals. Predictable B2B recurring revenue. High demand driven by policy and environmental awareness.',
+                    radarData: [9, 9, 6, 7]
+                },
+                {
+                    id: 'vernacularlearning',
+                    name: 'Vernacular Skill Development',
+                    icon: '📚',
+                    short_desc: 'E-learning platform offering job-oriented digital skills courses in regional Indian languages.',
+                    problem: 'Most high-quality e-learning content for digital skills (coding, digital marketing, AI/ML) is in English, creating a barrier for a vast majority of India\'s youth in Tier-2/3 cities and rural areas.',
+                    solution: 'An affordable, mobile-first platform with courses taught by industry experts in vernacular languages (Hindi, Tamil, Telugu, Bengali, etc.). Focus on practical skills with certification and job placement assistance.',
+                    target_audience: 'Students and young professionals aged 18-30 in non-metro areas seeking to upskill for the digital economy.',
+                    business_model: [
+                        { label: 'Individual Course Sales', value: 50 },
+                        { label: 'Corporate Training (B2B)', value: 30 },
+                        { label: 'Certification & Placement Fees', value: 20 },
+                    ],
+                    competitive_landscape: {
+                        level: 35,
+                        text: 'Medium. While the EdTech space is crowded, most major players (Byju\'s, Unacademy) focus on K-12 or competitive exams in English. The vernacular job-skills niche is relatively open.'
+                    },
+                    leverage_factors: 'Supports the "Skill India" mission. Addresses a massive, untapped market. The National Education Policy (NEP) 2020 promotes vernacular learning, creating a favorable policy environment.',
+                    radarData: [8, 8, 7, 4]
+                },
+                {
+                    id: 'wastemanagement',
+                    name: 'Decentralized Waste Management Tech',
+                    icon: '♻️',
+                    short_desc: 'IoT and AI-driven solutions for efficient waste segregation, collection, and processing at a local level.',
+                    problem: 'India faces significant challenges in waste management, including inefficient collection, lack of segregation at source, and limited processing infrastructure, leading to environmental degradation and health issues.',
+                    solution: 'Deploy smart bins with IoT sensors for fill-level monitoring, AI-powered sorting units for segregation, and optimized routing for collection vehicles. Offer a platform for citizens to report waste, and integrate with local recycling units and compost facilities.',
+                    target_audience: 'Urban local bodies (municipalities), residential complexes, commercial establishments, and waste processing units.',
+                    business_model: [
+                        { label: 'SaaS for Municipalities', value: 40 },
+                        { label: 'Hardware Sales/Leasing', value: 30 },
+                        { label: 'Data Analytics & Consulting', value: 20 },
+                        { label: 'Recycled Material Sales', value: 10 }
+                    ],
+                    competitive_landscape: {
+                        level: 30,
+                        text: 'Low to Medium. While large waste management companies exist, the tech-driven, decentralized approach focusing on smart segregation and optimized logistics is an emerging niche with fewer established players.'
+                    },
+                    leverage_factors: 'Aligns with Swachh Bharat Abhiyan (Clean India Mission) and Smart Cities initiatives. Growing environmental awareness and regulatory push for better waste management. Potential for significant social and environmental impact.',
+                    radarData: [7, 6, 7, 8]
+                },
+                {
+                    id: 'mentalwellness',
+                    name: 'Personalized Mental Wellness Platforms',
+                    icon: '🧠',
+                    short_desc: 'AI-driven platforms offering personalized mental health support, therapy, and mindfulness in regional languages.',
+                    problem: 'Mental health stigma, lack of accessible and affordable professional help, and a shortage of culturally sensitive resources in India, especially in non-metro areas.',
+                    solution: 'A mobile application providing AI-powered chatbot support for initial assessment and coping strategies, access to verified therapists via tele-consultation (in multiple languages), guided mindfulness exercises, and peer support communities. Focus on privacy and affordability.',
+                    target_audience: 'Young adults and working professionals (18-45) in urban and semi-urban areas, individuals seeking accessible mental health support, and corporates looking for employee wellness programs.',
+                    business_model: [
+                        { label: 'Subscription for Basic Access', value: 45 },
+                        { label: 'Per-Session Therapy Fees', value: 35 },
+                        { label: 'Corporate Wellness Packages', value: 20 }
+                    ],
+                    competitive_landscape: {
+                        level: 25,
+                        text: 'Low. While some mental health apps exist, few offer truly personalized, AI-driven support combined with a strong focus on regional languages and cultural nuances, creating a significant gap.'
+                    },
+                    leverage_factors: 'Increasing awareness and reduced stigma around mental health post-pandemic. High demand for digital health solutions. Potential for partnerships with healthcare providers and educational institutions.',
+                    radarData: [8, 7, 8, 6]
+                },
+                {
+                    id: 'sustainablepackaging',
+                    name: 'Sustainable Packaging Solutions',
+                    icon: '📦',
+                    short_desc: 'Providing eco-friendly, biodegradable, and recyclable packaging alternatives for e-commerce, F&B, and retail.',
+                    problem: 'The booming e-commerce and food delivery sectors in India generate massive amounts of plastic and non-biodegradable waste, leading to environmental pollution and increasing regulatory pressure.',
+                    solution: 'Develop and supply innovative packaging materials made from agricultural waste (e.g., rice husk, bagasse), mushroom mycelium, or recycled paper. Offer custom design and production services, focusing on cost-effectiveness and scalability for businesses.',
+                    target_audience: 'E-commerce companies, food and beverage businesses, FMCG brands, retail chains, and manufacturers looking to reduce their environmental footprint.',
+                    business_model: [
+                        { label: 'Bulk Material Sales', value: 60 },
+                        { label: 'Custom Packaging Design & Production', value: 30 },
+                        { label: 'Consulting on Sustainability', value: 10 }
+                    ],
+                    competitive_landscape: {
+                        level: 30,
+                        text: 'Low to Medium. While some players offer eco-friendly packaging, the market is still emerging, and there\'s high demand for scalable, cost-effective, and innovative solutions, especially for diverse industry needs.'
+                    },
+                    leverage_factors: 'Strong government push for plastic reduction and circular economy. Growing consumer demand for sustainable products. Potential for significant B2B partnerships and long-term contracts.',
+                    radarData: [9, 8, 7, 5]
+                }
+            ];
+
+            const radarCtx = document.getElementById('radarChart').getContext('2d');
+            const detailsSection = document.getElementById('details-section');
+            const ideaCardsContainer = document.getElementById('idea-cards');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            let detailChartInstance = null;
+            let activeCardId = null;
+
+            function createRadarChart() {
+                const data = {
+                    labels: ['Scalability', 'Profitability', 'Low Competition', 'Low Investment'],
+                    datasets: businessIdeas.map((idea, index) => {
+                        const colors = [
+                            'rgba(90, 103, 216, 0.4)',  // Soft Blue
+                            'rgba(240, 173, 78, 0.4)',  // Muted Orange
+                            'rgba(76, 175, 80, 0.4)',   // Soft Green
+                            'rgba(149, 117, 205, 0.4)', // Lavender
+                            'rgba(244, 143, 177, 0.4)', // Rose Pink
+                            'rgba(128, 203, 196, 0.4)', // Teal
+                            'rgba(255, 204, 102, 0.4)'  // Light Gold
+                        ];
+                        const borderColors = [
+                            'rgb(90, 103, 216)',
+                            'rgb(240, 173, 78)',
+                            'rgb(76, 175, 80)',
+                            'rgb(149, 117, 205)',
+                            'rgb(244, 143, 177)',
+                            'rgb(128, 203, 196)',
+                            'rgb(255, 204, 102)'
+                        ];
+                        return {
+                            label: idea.name,
+                            data: idea.radarData,
+                            backgroundColor: colors[index % colors.length],
+                            borderColor: borderColors[index % borderColors.length],
+                            borderWidth: 2,
+                            pointBackgroundColor: borderColors[index % borderColors.length],
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: borderColors[index % borderColors.length]
+                        };
+                    })
+                };
+
+                new Chart(radarCtx, {
+                    type: 'radar',
+                    data: data,
+                    options: {
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    color: 'rgba(0, 0, 0, 0.08)' /* Lighter angle lines */
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.08)' /* Lighter grid lines */
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 14,
+                                        family: 'Inter',
+                                        weight: '600'
+                                    },
+                                    color: '#4A5568' /* Darker gray for readability */
+                                },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    stepSize: 2,
+                                    font: {
+                                        size: 10
+                                    },
+                                    color: '#718096' /* Muted tick labels */
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 10
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    font: {
+                                        size: 12,
+                                        family: 'Inter'
+                                    },
+                                    color: '#4A5568' /* Muted legend text */
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.r !== null) {
+                                            label += context.parsed.r;
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function createDetailCards() {
+                businessIdeas.forEach(idea => {
+                    const card = document.createElement('div');
+                    card.className = 'nav-card bg-white p-5 rounded-xl shadow-md border-2 border-transparent cursor-pointer hover:shadow-xl hover:border-blue-400'; /* Changed hover border color */
+                    card.dataset.id = idea.id;
+                    card.innerHTML = `
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">${idea.icon}</div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">${idea.name}</h3>
+                                <p class="text-gray-500 text-sm mt-1">${idea.short_desc}</p>
+                            </div>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => updateDetails(idea.id));
+                    ideaCardsContainer.appendChild(card);
+                });
+            }
+
+            function updateDetails(id) {
+                if (activeCardId === id) return;
+
+                loadingSpinner.style.display = 'flex'; // Show spinner
+
+                const idea = businessIdeas.find(i => i.id === id);
+                if (!idea) {
+                    loadingSpinner.style.display = 'none'; // Hide spinner if no idea found
+                    return;
+                }
+                
+                activeCardId = id;
+                document.querySelectorAll('.nav-card').forEach(card => {
+                    card.classList.remove('active-card');
+                    if (card.dataset.id === id) {
+                        card.classList.add('active-card');
+                    }
+                });
+
+                // Clear content and prepare for fade-in
+                detailsSection.innerHTML = ''; 
+                detailsSection.classList.remove('content-fade-in');
+                void detailsSection.offsetWidth; // Trigger reflow to restart animation
+
+                const content = `
+                    <div class="content-fade-in">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-5xl">${idea.icon}</span>
+                            <h2 class="text-3xl font-bold text-gray-800">${idea.name}</h2>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                            <div class="lg:col-span-3">
+                                <div class="mb-6">
+                                    <h4 class="font-semibold text-xl mb-2 text-blue-700">Problem & Solution</h4>
+                                    <p class="text-gray-700 mb-2"><strong>Problem:</strong> ${idea.problem}</p>
+                                    <p class="text-gray-700"><strong>Solution:</strong> ${idea.solution}</p>
+                                </div>
+                                <div class="mb-6">
+                                    <h4 class="font-semibold text-xl mb-2 text-blue-700">Target Audience</h4>
+                                    <p class="text-gray-700">${idea.target_audience}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-xl mb-2 text-blue-700">Strategic Advantage</h4>
+                                    <p class="text-gray-700">${idea.leverage_factors}</p>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-2">
+                                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                                    <h4 class="font-semibold text-xl mb-3 text-center text-blue-700">Competitive Landscape</h4>
+                                    <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
+                                        <div class="bg-gradient-to-r from-green-500 to-teal-500 h-4 rounded-full" style="width: ${100 - idea.competitive_landscape.level}%"></div>
+                                    </div>
+                                    <div class="text-center font-medium text-sm text-green-700 mb-2">Opportunity Score: ${100 - idea.competitive_landscape.level}%</div>
+                                    <p class="text-sm text-gray-600">${idea.competitive_landscape.text}</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-xl mb-3 text-center text-yellow-700">Potential Business Model</h4>
+                                    <div class="h-64 w-full">
+                                        <canvas id="detailDoughnutChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                detailsSection.innerHTML = content;
+                detailsSection.classList.add('content-fade-in');
+
+                if (detailChartInstance) {
+                    detailChartInstance.destroy();
+                }
+
+                const doughnutCtx = document.getElementById('detailDoughnutChart').getContext('2d');
+                detailChartInstance = new Chart(doughnutCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: idea.business_model.map(item => item.label),
+                        datasets: [{
+                            data: idea.business_model.map(item => item.value),
+                            backgroundColor: ['#63B3ED', '#81E6D9', '#F6E05E', '#FC8181', '#A78BFA'], /* Softer colors */
+                            borderColor: '#FDFBF8',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 12,
+                                        family: 'Inter',
+                                    },
+                                    boxWidth: 15,
+                                    padding: 15,
+                                    color: '#4A5568' /* Muted legend text */
+                                }
+                            }
+                        },
+                        cutout: '60%'
+                    }
+                });
+
+                loadingSpinner.style.display = 'none'; // Hide spinner after content and charts are loaded
+            }
+
+            document.getElementById('report-date').textContent = new Date().toLocaleDateString('en-IN', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+
+            createRadarChart();
+            createDetailCards();
+            updateDetails(businessIdeas[0].id);
+        });
+    </script>
+</body>
+</html>
