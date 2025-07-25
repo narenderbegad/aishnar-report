@@ -1,45 +1,42 @@
-<p align="center">
-  <img src="https://img.icons8.com/nolan/64/business-report.png" alt="Business Reports Logo" width="100"/>
-</p>
+<div align="center">
+  <img src="https://img.icons8.com/nolan/64/artificial-intelligence.png" alt="AI Toolkit Logo" width="100"/>
+</div>
 
-<h1 align="center">📊 AishNar | Business Reports</h1>
-
-<p align="center">
-  <em>Created by <strong>Narender</strong> | Powered by <strong>AishNar</strong></em><br>
-  <strong>⚡ Futuristic business intelligence, one report at a time.</strong>
-</p>
+<h1 align="center">📊 AishNar | AI Tool Explorer – 2025 Edition</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Built%20By-AishNar-blueviolet?style=flat-square" />
-  <img src="https://img.shields.io/badge/Reports-PowerBI|Excel|Python-brightgreen?style=flat-square" />
-  <img src="https://img.shields.io/badge/Status-Active-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square" />
+  <em>Built by <strong>Narender</strong> | Powered by <strong>AishNar Digital</strong></em><br>
+  <strong>Interactive. Filterable. Practical. — The AI landscape decoded for 2025.</strong>
 </p>
 
----
+<hr/>
 
-## 🚀 Vision
+<h2>🚀 Vision</h2>
+<blockquote>
+  <p>Not just another report.<br>
+  We turned insights into action with a dashboard-first approach — built for decision-makers, marketers, developers, and AI enthusiasts who need <strong>real tools, not fluff</strong>.</p>
+</blockquote>
 
-> Data is the fuel. Reports are the future. AishNar is the engine.  
-We’re building modern, modular, and beautiful business reports that bring clarity, speed, and insight to decision-making.
+<h2>🧩 What This Report Solves</h2>
+<ul>
+  <li>👀 Tired of scrolling endless reports?</li>
+  <li>🧰 Want to find the right AI tool fast?</li>
+  <li>💡 Need to understand where the AI market is heading?</li>
+</ul>
+<p><strong>This toolkit helps you do all three — visually and interactively.</strong></p>
 
----
+<h2>🔍 What's Inside</h2>
+<ul>
+  <li>🎛️ <strong>Tool Explorer:</strong> Filter 100+ AI tools by category and persona.</li>
+  <li>📊 <strong>Market View Dashboard:</strong> Visual map of creativity vs enterprise tools.</li>
+  <li>🧠 <strong>Trend Highlights:</strong> Agentic Shift, Multimodality, Enterprise Readiness.</li>
+  <li>💸 <strong>Pricing Badges:</strong> Freemium, Paid, or Free — instantly visible.</li>
+</ul>
 
-## 🔍 What’s Inside?
-
-- 📈 Smart dashboards (Power BI, Excel, Python)
-- 📊 Visual storytelling
-- 🤖 Automated analytics scripts
-- 💼 Business templates (Sales, Finance, Inventory)
-- 🔁 Real-world use cases
-
----
-
-## 🧠 Tech Stack
-
-```yaml
-- Power BI
-- Microsoft Excel
-- Python (pandas, seaborn, openpyxl)
-- SQL (MySQL, PostgreSQL)
-- Git & GitHub
+<h2>🛠️ Built With</h2>
+<pre><code>
+- HTML + Tailwind CSS (for responsive UI)
+- Chart.js (for live bar charts)
+- JavaScript (for filter logic)
+- No frameworks, just speed
+</code></pre>
