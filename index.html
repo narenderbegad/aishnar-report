@@ -3,514 +3,1360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Future-Forward Business Insights for India: Interactive Report by AishNar Digital</title>
-    <meta name="description" content="Explore promising, low-competition business ideas in India with this interactive report. Discover insights on Agri-Tech, Senior Care, EV Charging, Vernacular Learning, Waste Management, Mental Wellness, and Sustainable Packaging for future growth.">
-    <meta name="keywords" content="India business ideas, low competition business, future business India, Agri-Tech, Senior Care, EV Charging, Vernacular Learning, Waste Management, Mental Wellness, Sustainable Packaging, Indian market opportunities, startup India, AishNar Digital">
-    <!-- Chosen Palette: Muted Earth Tones & Soft Blues/Greens with a touch of deep purple -->
-    <!-- Application Structure Plan: The application is structured as an interactive dashboard. The top section presents a master "Opportunity Radar" chart, allowing users to immediately compare all business ideas across key metrics (Scalability, Profitability, Low Competition, Low Investment). Below this, users can navigate through clickable cards, one for each business idea. Clicking a card dynamically updates the main content area with a detailed breakdown of that specific idea. This two-layer structure (overview followed by on-demand detail) was chosen to facilitate easy comparison and prevent overwhelming the user with information. It encourages exploration by letting the user guide their own journey, starting with a high-level visual and then drilling into the specifics that interest them most. -->
-    <!-- Visualization & Content Choices: 
-        - Report Info: High-level comparison of all ideas across four metrics. -> Goal: Compare. -> Viz/Presentation Method: Radar Chart. -> Interaction: Hover over points to see scores. -> Justification: A radar chart is ideal for comparing multiple subjects (business ideas) across multiple quantitative dimensions simultaneously, providing a quick, holistic "shape" of each opportunity. -> Library/Method: Chart.js/Canvas.
-        - Report Info: Switching between different business ideas. -> Goal: Organize/Navigate. -> Viz/Presentation Method: Interactive HTML cards with hover/active states. -> Interaction: Click to load detailed content. -> Justification: This is an intuitive and standard UI pattern for single-page applications, providing clear visual feedback on the user's current selection. -> Library/Method: HTML/CSS/JS.
-        - Report Info: Potential revenue streams for each idea. -> Goal: Inform (Proportions). -> Viz/Presentation Method: Donut Chart. -> Interaction: Hover over segments for details. -> Justification: A donut chart effectively visualizes the composition of a whole, making it easy to understand the potential business model mix at a glance. -> Library/Method: Chart.js/Canvas.
-        - Report Info: Detailed analysis (Problem, Solution, Target Audience, etc.). -> Goal: Inform. -> Viz/Presentation Method: Structured text blocks with icons and clear typography. -> Interaction: Content is dynamically loaded on card click. -> Justification: Organizes qualitative information for maximum readability and scannability, using icons to visually anchor key concepts. -> Library/Method: HTML/Tailwind CSS/JS.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>Future-Forward Business Insights for India | AishNar Groups</title>
+    <meta name="description" content="Discover growth-ready business opportunities in India. AI-analyzed insights on high-potential, low-competition niches for startups, entrepreneurs, and investors.">
+    <meta name="keywords" content="business opportunities India, startup ideas, entrepreneurship, business insights, AishNar Groups, investment opportunities">
+    <meta name="author" content="AishNar Groups">
+    <link rel="canonical" href="https://aishnardigital.github.io/business-insights/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aishnardigital.github.io/business-insights/">
+    <meta property="og:title" content="Future-Forward Business Insights for India | AishNar Groups">
+    <meta property="og:description" content="Discover growth-ready business opportunities in India. AI-analyzed insights on high-potential, low-competition niches.">
+    <meta property="og:image" content="https://aishnardigital.github.io/business-insights/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aishnardigital.github.io/business-insights/">
+    <meta property="twitter:title" content="Future-Forward Business Insights for India | AishNar Groups">
+    <meta property="twitter:description" content="Discover growth-ready business opportunities in India. AI-analyzed insights on high-potential, low-competition niches.">
+    <meta property="twitter:image" content="https://aishnardigital.github.io/business-insights/og-image.jpg">
+
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "AishNar Groups Business Insights",
+        "url": "https://aishnardigital.github.io/business-insights/",
+        "description": "Future-Forward Business Insights for India",
+        "publisher": {
+            "@type": "Organization",
+            "name": "AishNar Groups",
+            "url": "https://aishnardigital.github.io/",
+            "sameAs": ["https://instagram.com/aishnar_official"]
+        }
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #FDFBF8 0%, #F5F7FA 50%, #ECEFF4 100%);
-            background-size: 200% 200%;
-            animation: subtleGradientShift 20s ease infinite alternate;
-            color: #383838;
         }
-        @keyframes subtleGradientShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-        h1, h2 {
-            font-family: 'Playfair Display', serif;
-        }
-        .chart-container {
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
             position: relative;
-            width: 100%;
-            max-width: 650px; /* Slightly wider for better visual impact */
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px; /* Adjusted height */
-            max-height: 450px; /* Adjusted max height */
+            overflow: hidden;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 420px; /* Taller on larger screens */
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 127, 0.1) 0%, transparent 60%);
+            animation: breathingOrbs 8s ease-in-out infinite;
+        }
+        
+        .gradient-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(0, 255, 255, 0.03) 100px,
+                    rgba(0, 255, 255, 0.03) 102px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(255, 0, 255, 0.03) 100px,
+                    rgba(255, 0, 255, 0.03) 102px
+                );
+            animation: matrixGrid 20s linear infinite;
+        }
+        
+        @keyframes breathingOrbs {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: scale(1.3) rotate(180deg);
+                opacity: 0.9;
             }
         }
-        .active-card {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15), 0 6px 10px -3px rgba(0, 0, 0, 0.08);
-            border-color: #5A67D8; /* Muted blue border */
-            background-color: #F0F4F8; /* Subtle background for active state */
+        
+        @keyframes matrixGrid {
+            0% { 
+                transform: translateX(0) translateY(0);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: translateX(100px) translateY(100px);
+                opacity: 0.8;
+            }
         }
-        .nav-card {
-            transition: all 0.3s ease-in-out;
-            border-color: #E2E8F0; /* Light border for inactive cards */
+        
+        .typing-animation {
+            overflow: hidden;
+            border-right: 3px solid #fff;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
         }
-        .nav-card:hover {
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.1), 0 3px 5px -2px rgba(0, 0, 0, 0.05);
-            border-color: #9DA6E4; /* Lighter blue on hover */
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
-        .content-fade-in {
-            animation: fadeIn 0.6s ease-in-out;
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #fff; }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .card-hover {
+            transition: all 0.3s ease;
         }
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #5A67D8; /* Muted blue spinner */
-            border-radius: 50%;
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .opportunity-score {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #2d3748 !important;
+        }
+        
+        .dark-mode .text-gray-800 {
+            color: #e2e8f0 !important;
+        }
+        
+        .dark-mode .text-gray-600 {
+            color: #a0aec0 !important;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.7);
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal.show .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .modal-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 0 0 20px 20px;
+            color: #1a202c;
+        }
+        
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
             width: 40px;
             height: 40px;
-            animation: spin 1s linear infinite;
-            display: none; /* Hidden by default */
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        .close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .glow-effect:hover {
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.3);
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff7f, #ffd700);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: borderGlow 3s linear infinite;
+        }
+        
+        .glow-effect:hover::before {
+            opacity: 0.7;
+        }
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+        
+        .hologram-text {
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff7f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: hologramShift 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        
+        @keyframes hologramShift {
+            0% { filter: hue-rotate(0deg) brightness(1); }
+            100% { filter: hue-rotate(180deg) brightness(1.2); }
+        }
+        
+        .neon-button {
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.3),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .neon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .neon-button:hover::before {
+            left: 100%;
+        }
+        
+        .neon-button:hover {
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.6),
+                inset 0 0 30px rgba(0, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        @keyframes scanLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="smooth-scroll">
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="fixed top-4 right-4 z-50 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-colors">
+        <i class="fas fa-moon"></i>
+    </button>
 
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        
-        <header class="text-center mb-10">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 tracking-tight leading-tight">Future-Forward Business Insights for India</h1>
-            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">An interactive exploration of high-potential, low-competition niches poised for significant growth in the evolving Indian market. Discover opportunities solving real-world challenges with strategic advantages.</p>
-        </header>
-
-        <main>
-            <section id="comparison" class="mb-12">
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 text-gray-800">Opportunity Radar: Comparative Analysis</h2>
-                <p class="text-center text-gray-500 mb-6 max-w-2xl mx-auto">This radar chart provides a comparative snapshot of each business idea across four key dimensions: Scalability, Profitability, Low Competition, and Low Investment. A larger, more balanced shape indicates a stronger overall opportunity.</p>
-                <div class="chart-container">
-                    <canvas id="radarChart"></canvas>
+    <!-- Hero Section -->
+    <section class="gradient-bg cyber-grid min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div class="container mx-auto px-6 text-center relative z-10" data-aos="fade-up">
+            <div class="mb-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl overflow-hidden glow-effect" style="animation: pulse 2s infinite;">
+                    <img src="logo.png" alt="AishNar Groups Logo" class="w-20 h-20 object-contain">
                 </div>
-            </section>
+                <h1 class="text-3xl font-bold hologram-text mb-2">AishNar Groups</h1>
+            </div>
             
-            <section id="navigation" class="mb-12">
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-800">Explore Key Business Ideas</h2>
-                <div id="idea-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                </div>
-            </section>
-
-            <section id="details-section" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 relative">
-                <div id="loading-spinner" class="spinner absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 rounded-2xl z-10"></div>
-            </section>
-
-        </main>
+            <h2 class="text-5xl md:text-7xl font-bold text-white mb-6 typing-animation float-animation" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,255,255,0.3);">
+                <span class="hologram-text">Future-Forward</span> Business Insights
+            </h2>
+            <p class="text-xl md:text-2xl text-white mb-8 font-medium pulse-animation" data-aos="fade-up" data-aos-delay="200" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(255,255,255,0.3);">
+                Discover growth-ready business ideas with <span class="hologram-text">AI-powered</span> potential analysis.
+            </p>
+            <button onclick="scrollToContent()" class="neon-button px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                <span class="relative z-10">Explore Report <i class="fas fa-rocket ml-2 animate-bounce"></i></span>
+            </button>
+        </div>
         
-        <footer class="text-center mt-12 py-6 border-t border-gray-200">
-            <p class="text-gray-500">Interactive Report generated on <span id="report-date"></span>.</p>
-            <p class="text-sm text-gray-400 mt-1">Data and analysis are based on market trends up to Q2 2025.</p>
-            <p class="text-sm text-gray-500 mt-2">Published by <a href="https://aishnar.ct.ws" target="_blank" class="text-blue-600 hover:underline font-medium">AishNar Digital</a></p>
-        </footer>
-    </div>
+        <!-- Enhanced Animated particles -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute w-2 h-2 bg-cyan-400 rounded-full opacity-60 animate-ping" style="top: 15%; left: 8%; animation-delay: 0s;"></div>
+            <div class="absolute w-3 h-3 bg-purple-400 rounded-full opacity-60 animate-ping" style="top: 25%; right: 15%; animation-delay: 1s;"></div>
+            <div class="absolute w-1 h-1 bg-yellow-400 rounded-full opacity-60 animate-ping" style="top: 45%; left: 20%; animation-delay: 2s;"></div>
+            <div class="absolute w-4 h-4 bg-green-400 rounded-full opacity-60 animate-ping" style="top: 65%; right: 25%; animation-delay: 3s;"></div>
+            <div class="absolute w-2 h-2 bg-pink-400 rounded-full opacity-60 animate-ping" style="bottom: 35%; left: 35%; animation-delay: 4s;"></div>
+            <div class="absolute w-3 h-3 bg-blue-400 rounded-full opacity-60 animate-ping" style="bottom: 20%; right: 30%; animation-delay: 5s;"></div>
+            
+            <!-- Floating geometric shapes -->
+            <div class="absolute w-8 h-8 border-2 border-cyan-400 opacity-30 animate-spin" style="top: 30%; left: 70%; animation-duration: 8s;"></div>
+            <div class="absolute w-6 h-6 border-2 border-purple-400 opacity-30 animate-spin" style="top: 70%; left: 10%; animation-duration: 12s; animation-direction: reverse;"></div>
+            <div class="absolute w-10 h-10 border-2 border-yellow-400 opacity-30 animate-spin" style="bottom: 40%; right: 10%; animation-duration: 15s;"></div>
+        </div>
+        
+        <!-- Scanning lines effect -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50" style="top: 30%; animation: scanLine 4s linear infinite;"></div>
+            <div class="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-50" style="top: 70%; animation: scanLine 6s linear infinite reverse;"></div>
+        </div>
+    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const businessIdeas = [
-                {
-                    id: 'agritech',
-                    name: 'Hyperlocal Agri-Tech Platform',
-                    icon: '🌿',
-                    short_desc: 'Connecting farmers directly with local businesses and consumers using a tech-enabled supply chain.',
-                    problem: 'Significant post-harvest losses (up to 30%) due to inefficient supply chains, multiple intermediaries, and lack of real-time market data for farmers.',
-                    solution: 'A mobile-first platform providing demand forecasting, optimized logistics, and a direct marketplace. This reduces waste, ensures fair pricing for farmers, and delivers fresh produce to consumers and businesses (restaurants, hotels).',
-                    target_audience: 'Small to medium-scale farmers in Tier-2/3 cities, local restaurants, grocery stores, and urban consumers seeking fresh produce.',
-                    business_model: [
-                        { label: 'Commission on Transactions', value: 50 },
-                        { label: 'Logistics & Warehousing Fees', value: 30 },
-                        { label: 'Premium Data Analytics (B2B)', value: 20 },
-                    ],
-                    competitive_landscape: {
-                        level: 25,
-                        text: 'Low to Medium. While large players like Ninjacart and DeHaat exist, the hyperlocal, small-farmer-focused niche in Tier-2/3 cities is largely underserved. Competition is fragmented and often non-tech-based.'
-                    },
-                    leverage_factors: 'Leverages Digital India infrastructure and can tap into government subsidies for agricultural startups (e.g., Agri-Udaan). Growing demand for farm-to-table models.',
-                    radarData: [8, 7, 7, 6] 
-                },
-                {
-                    id: 'seniorcare',
-                    name: 'Personalized Senior Care Services',
-                    icon: '👵',
-                    short_desc: 'Tech-enabled platform for non-medical, personalized at-home care and companionship for the elderly.',
-                    problem: 'India\'s elderly population is projected to reach ~300 million by 2050. Many urban seniors live alone as children move for work, leading to a need for reliable non-medical care, companionship, and emergency assistance.',
-                    solution: 'A subscription-based service offering verified caregivers for companionship, daily chores, tech assistance, and health monitoring coordination. An integrated app for families provides updates and peace of mind.',
-                    target_audience: 'Urban and semi-urban elderly individuals (65+), and their children living in India or abroad (NRIs).',
-                    business_model: [
-                        { label: 'Monthly Subscription Plans', value: 70 },
-                        { label: 'On-Demand Service Fees', value: 20 },
-                        { label: 'Specialized Product Sales', value: 10 },
-                    ],
-                    competitive_landscape: {
-                        level: 20,
-                        text: 'Low. The market is highly fragmented with unorganized local providers. Few organized, tech-enabled players exist, presenting a significant opportunity for a trusted, scalable brand.'
-                    },
-                    leverage_factors: 'Addresses a growing demographic shift. High emotional value and recurring revenue potential. Can integrate with health-tech APIs and smart home devices for enhanced safety features.',
-                    radarData: [7, 8, 8, 5]
-                },
-                {
-                    id: 'evcharging',
-                    name: 'EV Charging & Management SaaS',
-                    icon: '⚡',
-                    short_desc: 'Software-as-a-Service for managing EV charging stations in residential and commercial complexes.',
-                    problem: 'As EV adoption rises, residential societies and commercial buildings need a simple way to install, manage, and monetize charging stations without complex technical overhead or high upfront costs.',
-                    solution: 'A SaaS platform that provides owners with a dashboard for monitoring usage, setting pricing, processing payments, and managing load balancing. Offer a "Charging-as-a-Service" model including hardware leasing.',
-                    target_audience: 'Residential welfare associations (RWAs), commercial real estate owners, co-working spaces, and fleet operators.',
-                    business_model: [
-                        { label: 'SaaS Subscription Fee', value: 60 },
-                        { label: 'Hardware Leasing & Installation', value: 25 },
-                        { label: 'Transaction Processing Fee', value: 15 },
-                    ],
-                    competitive_landscape: {
-                        level: 40,
-                        text: 'Medium. Players like Tata Power and ChargeZone are focused on public highway charging. The B2B SaaS niche for private property management is less saturated, offering a clear entry point.'
-                    },
-                    leverage_factors: 'Directly supports the government\'s FAME-II scheme and national EV goals. Predictable B2B recurring revenue. High demand driven by policy and environmental awareness.',
-                    radarData: [9, 9, 6, 7]
-                },
-                {
-                    id: 'vernacularlearning',
-                    name: 'Vernacular Skill Development',
-                    icon: '📚',
-                    short_desc: 'E-learning platform offering job-oriented digital skills courses in regional Indian languages.',
-                    problem: 'Most high-quality e-learning content for digital skills (coding, digital marketing, AI/ML) is in English, creating a barrier for a vast majority of India\'s youth in Tier-2/3 cities and rural areas.',
-                    solution: 'An affordable, mobile-first platform with courses taught by industry experts in vernacular languages (Hindi, Tamil, Telugu, Bengali, etc.). Focus on practical skills with certification and job placement assistance.',
-                    target_audience: 'Students and young professionals aged 18-30 in non-metro areas seeking to upskill for the digital economy.',
-                    business_model: [
-                        { label: 'Individual Course Sales', value: 50 },
-                        { label: 'Corporate Training (B2B)', value: 30 },
-                        { label: 'Certification & Placement Fees', value: 20 },
-                    ],
-                    competitive_landscape: {
-                        level: 35,
-                        text: 'Medium. While the EdTech space is crowded, most major players (Byju\'s, Unacademy) focus on K-12 or competitive exams in English. The vernacular job-skills niche is relatively open.'
-                    },
-                    leverage_factors: 'Supports the "Skill India" mission. Addresses a massive, untapped market. The National Education Policy (NEP) 2020 promotes vernacular learning, creating a favorable policy environment.',
-                    radarData: [8, 8, 7, 4]
-                },
-                {
-                    id: 'wastemanagement',
-                    name: 'Decentralized Waste Management Tech',
-                    icon: '♻️',
-                    short_desc: 'IoT and AI-driven solutions for efficient waste segregation, collection, and processing at a local level.',
-                    problem: 'India faces significant challenges in waste management, including inefficient collection, lack of segregation at source, and limited processing infrastructure, leading to environmental degradation and health issues.',
-                    solution: 'Deploy smart bins with IoT sensors for fill-level monitoring, AI-powered sorting units for segregation, and optimized routing for collection vehicles. Offer a platform for citizens to report waste, and integrate with local recycling units and compost facilities.',
-                    target_audience: 'Urban local bodies (municipalities), residential complexes, commercial establishments, and waste processing units.',
-                    business_model: [
-                        { label: 'SaaS for Municipalities', value: 40 },
-                        { label: 'Hardware Sales/Leasing', value: 30 },
-                        { label: 'Data Analytics & Consulting', value: 20 },
-                        { label: 'Recycled Material Sales', value: 10 }
-                    ],
-                    competitive_landscape: {
-                        level: 30,
-                        text: 'Low to Medium. While large waste management companies exist, the tech-driven, decentralized approach focusing on smart segregation and optimized logistics is an emerging niche with fewer established players.'
-                    },
-                    leverage_factors: 'Aligns with Swachh Bharat Abhiyan (Clean India Mission) and Smart Cities initiatives. Growing environmental awareness and regulatory push for better waste management. Potential for significant social and environmental impact.',
-                    radarData: [7, 6, 7, 8]
-                },
-                {
-                    id: 'mentalwellness',
-                    name: 'Personalized Mental Wellness Platforms',
-                    icon: '🧠',
-                    short_desc: 'AI-driven platforms offering personalized mental health support, therapy, and mindfulness in regional languages.',
-                    problem: 'Mental health stigma, lack of accessible and affordable professional help, and a shortage of culturally sensitive resources in India, especially in non-metro areas.',
-                    solution: 'A mobile application providing AI-powered chatbot support for initial assessment and coping strategies, access to verified therapists via tele-consultation (in multiple languages), guided mindfulness exercises, and peer support communities. Focus on privacy and affordability.',
-                    target_audience: 'Young adults and working professionals (18-45) in urban and semi-urban areas, individuals seeking accessible mental health support, and corporates looking for employee wellness programs.',
-                    business_model: [
-                        { label: 'Subscription for Basic Access', value: 45 },
-                        { label: 'Per-Session Therapy Fees', value: 35 },
-                        { label: 'Corporate Wellness Packages', value: 20 }
-                    ],
-                    competitive_landscape: {
-                        level: 25,
-                        text: 'Low. While some mental health apps exist, few offer truly personalized, AI-driven support combined with a strong focus on regional languages and cultural nuances, creating a significant gap.'
-                    },
-                    leverage_factors: 'Increasing awareness and reduced stigma around mental health post-pandemic. High demand for digital health solutions. Potential for partnerships with healthcare providers and educational institutions.',
-                    radarData: [8, 7, 8, 6]
-                },
-                {
-                    id: 'sustainablepackaging',
-                    name: 'Sustainable Packaging Solutions',
-                    icon: '📦',
-                    short_desc: 'Providing eco-friendly, biodegradable, and recyclable packaging alternatives for e-commerce, F&B, and retail.',
-                    problem: 'The booming e-commerce and food delivery sectors in India generate massive amounts of plastic and non-biodegradable waste, leading to environmental pollution and increasing regulatory pressure.',
-                    solution: 'Develop and supply innovative packaging materials made from agricultural waste (e.g., rice husk, bagasse), mushroom mycelium, or recycled paper. Offer custom design and production services, focusing on cost-effectiveness and scalability for businesses.',
-                    target_audience: 'E-commerce companies, food and beverage businesses, FMCG brands, retail chains, and manufacturers looking to reduce their environmental footprint.',
-                    business_model: [
-                        { label: 'Bulk Material Sales', value: 60 },
-                        { label: 'Custom Packaging Design & Production', value: 30 },
-                        { label: 'Consulting on Sustainability', value: 10 }
-                    ],
-                    competitive_landscape: {
-                        level: 30,
-                        text: 'Low to Medium. While some players offer eco-friendly packaging, the market is still emerging, and there\'s high demand for scalable, cost-effective, and innovative solutions, especially for diverse industry needs.'
-                    },
-                    leverage_factors: 'Strong government push for plastic reduction and circular economy. Growing consumer demand for sustainable products. Potential for significant B2B partnerships and long-term contracts.',
-                    radarData: [9, 8, 7, 5]
-                }
-            ];
-
-            const radarCtx = document.getElementById('radarChart').getContext('2d');
-            const detailsSection = document.getElementById('details-section');
-            const ideaCardsContainer = document.getElementById('idea-cards');
-            const loadingSpinner = document.getElementById('loading-spinner');
-            let detailChartInstance = null;
-            let activeCardId = null;
-
-            function createRadarChart() {
-                const data = {
-                    labels: ['Scalability', 'Profitability', 'Low Competition', 'Low Investment'],
-                    datasets: businessIdeas.map((idea, index) => {
-                        const colors = [
-                            'rgba(90, 103, 216, 0.4)',  // Soft Blue
-                            'rgba(240, 173, 78, 0.4)',  // Muted Orange
-                            'rgba(76, 175, 80, 0.4)',   // Soft Green
-                            'rgba(149, 117, 205, 0.4)', // Lavender
-                            'rgba(244, 143, 177, 0.4)', // Rose Pink
-                            'rgba(128, 203, 196, 0.4)', // Teal
-                            'rgba(255, 204, 102, 0.4)'  // Light Gold
-                        ];
-                        const borderColors = [
-                            'rgb(90, 103, 216)',
-                            'rgb(240, 173, 78)',
-                            'rgb(76, 175, 80)',
-                            'rgb(149, 117, 205)',
-                            'rgb(244, 143, 177)',
-                            'rgb(128, 203, 196)',
-                            'rgb(255, 204, 102)'
-                        ];
-                        return {
-                            label: idea.name,
-                            data: idea.radarData,
-                            backgroundColor: colors[index % colors.length],
-                            borderColor: borderColors[index % borderColors.length],
-                            borderWidth: 2,
-                            pointBackgroundColor: borderColors[index % borderColors.length],
-                            pointBorderColor: '#fff',
-                            pointHoverBackgroundColor: '#fff',
-                            pointHoverBorderColor: borderColors[index % borderColors.length]
-                        };
-                    })
-                };
-
-                new Chart(radarCtx, {
-                    type: 'radar',
-                    data: data,
-                    options: {
-                        maintainAspectRatio: false,
-                        scales: {
-                            r: {
-                                angleLines: {
-                                    color: 'rgba(0, 0, 0, 0.08)' /* Lighter angle lines */
-                                },
-                                grid: {
-                                    color: 'rgba(0, 0, 0, 0.08)' /* Lighter grid lines */
-                                },
-                                pointLabels: {
-                                    font: {
-                                        size: 14,
-                                        family: 'Inter',
-                                        weight: '600'
-                                    },
-                                    color: '#4A5568' /* Darker gray for readability */
-                                },
-                                ticks: {
-                                    backdropColor: 'transparent',
-                                    stepSize: 2,
-                                    font: {
-                                        size: 10
-                                    },
-                                    color: '#718096' /* Muted tick labels */
-                                },
-                                suggestedMin: 0,
-                                suggestedMax: 10
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    font: {
-                                        size: 12,
-                                        family: 'Inter'
-                                    },
-                                    color: '#4A5568' /* Muted legend text */
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.dataset.label || '';
-                                        if (label) {
-                                            label += ': ';
-                                        }
-                                        if (context.parsed.r !== null) {
-                                            label += context.parsed.r;
-                                        }
-                                        return label;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            function createDetailCards() {
-                businessIdeas.forEach(idea => {
-                    const card = document.createElement('div');
-                    card.className = 'nav-card bg-white p-5 rounded-xl shadow-md border-2 border-transparent cursor-pointer hover:shadow-xl hover:border-blue-400'; /* Changed hover border color */
-                    card.dataset.id = idea.id;
-                    card.innerHTML = `
-                        <div class="flex items-start gap-4">
-                            <div class="text-3xl">${idea.icon}</div>
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">${idea.name}</h3>
-                                <p class="text-gray-500 text-sm mt-1">${idea.short_desc}</p>
-                            </div>
-                        </div>
-                    `;
-                    card.addEventListener('click', () => updateDetails(idea.id));
-                    ideaCardsContainer.appendChild(card);
-                });
-            }
-
-            function updateDetails(id) {
-                if (activeCardId === id) return;
-
-                loadingSpinner.style.display = 'flex'; // Show spinner
-
-                const idea = businessIdeas.find(i => i.id === id);
-                if (!idea) {
-                    loadingSpinner.style.display = 'none'; // Hide spinner if no idea found
-                    return;
-                }
+    <!-- Opportunity Radar Chart -->
+    <section id="content" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-white mb-4" data-aos="fade-up">
+                Opportunity Radar Analysis
+            </h2>
+            <p class="text-xl text-center text-gray-300 mb-12" data-aos="fade-up" data-aos-delay="100">
+                AI-powered assessment of business potential across key metrics
+            </p>
+            
+            <div class="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-700" data-aos="fade-up" data-aos-delay="200">
+                <div class="relative">
+                    <canvas id="radarChart" width="400" height="400"></canvas>
+                </div>
                 
-                activeCardId = id;
-                document.querySelectorAll('.nav-card').forEach(card => {
-                    card.classList.remove('active-card');
-                    if (card.dataset.id === id) {
-                        card.classList.add('active-card');
-                    }
-                });
+                <!-- SEO Fallback Table -->
+                <table class="w-full mt-8 text-sm" style="display: none;">
+                    <caption>Business Opportunity Analysis</caption>
+                    <thead>
+                        <tr>
+                            <th>Business Idea</th>
+                            <th>Scalability</th>
+                            <th>Profitability</th>
+                            <th>Low Competition</th>
+                            <th>Low Investment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Hyperlocal Agri-Tech</td><td>9</td><td>8</td><td>7</td><td>6</td></tr>
+                        <tr><td>Senior Care Services</td><td>7</td><td>9</td><td>8</td><td>8</td></tr>
+                        <tr><td>EV Charging SaaS</td><td>9</td><td>7</td><td>6</td><td>5</td></tr>
+                        <tr><td>Vernacular Learning</td><td>8</td><td>8</td><td>7</td><td>7</td></tr>
+                        <tr><td>Waste Management</td><td>6</td><td>7</td><td>8</td><td>7</td></tr>
+                        <tr><td>Mental Wellness</td><td>8</td><td>8</td><td>6</td><td>6</td></tr>
+                        <tr><td>Sustainable Packaging</td><td>7</td><td>8</td><td>7</td><td>6</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
-                // Clear content and prepare for fade-in
-                detailsSection.innerHTML = ''; 
-                detailsSection.classList.remove('content-fade-in');
-                void detailsSection.offsetWidth; // Trigger reflow to restart animation
+    <!-- Business Ideas Section -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-white mb-4" data-aos="fade-up">
+                High-Potential Business Opportunities
+            </h2>
+            <p class="text-xl text-center text-gray-300 mb-16" data-aos="fade-up" data-aos-delay="100">
+                Click on any card to explore detailed analysis and strategic insights
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Hyperlocal Agri-Tech Platform -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg p-6 card-hover cursor-pointer glow-effect border border-gray-600 hover:border-cyan-400 transition-all duration-300" data-aos="fade-up" onclick="openModal('agritech')">
+                    <div class="text-4xl mb-4 float-animation" style="filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));">🌿</div>
+                    <h3 class="text-xl font-bold text-white mb-2 hover:text-cyan-400 transition-colors">Hyperlocal Agri-Tech Platform</h3>
+                    <p class="text-gray-300 mb-4">Connecting farmers directly with urban consumers through technology</p>
+                    <div class="opportunity-score text-2xl font-bold mb-4 hologram-text">Score: <span class="counter" data-target="85">0</span>/100</div>
+                    <div class="text-center">
+                        <span class="inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-cyan-400 hover:to-purple-400 transition-all transform hover:scale-105 shadow-lg">
+                            Click to Explore <i class="fas fa-rocket ml-1 animate-pulse"></i>
+                        </span>
+                    </div>
+                </div>
 
-                const content = `
-                    <div class="content-fade-in">
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="text-5xl">${idea.icon}</span>
-                            <h2 class="text-3xl font-bold text-gray-800">${idea.name}</h2>
+                <!-- Senior Care Services -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg p-6 card-hover cursor-pointer glow-effect border border-gray-600 hover:border-purple-400 transition-all duration-300" data-aos="fade-up" data-aos-delay="100" onclick="openModal('seniorcare')">
+                    <div class="text-4xl mb-4 float-animation" style="filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));">👵</div>
+                    <h3 class="text-xl font-bold text-white mb-2 hover:text-purple-400 transition-colors">Personalized Senior Care Services</h3>
+                    <p class="text-gray-300 mb-4">Technology-enabled care solutions for India's aging population</p>
+                    <div class="opportunity-score text-2xl font-bold mb-4 hologram-text">Score: <span class="counter" data-target="88">0</span>/100</div>
+                    <div class="text-center">
+                        <span class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-purple-400 hover:to-pink-400 transition-all transform hover:scale-105 shadow-lg">
+                            Click to Explore <i class="fas fa-rocket ml-1 animate-pulse"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="card-details hidden mt-6 pt-6 border-t">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Problem</h4>
+                                <p class="text-sm text-gray-600">India's senior population (138M by 2025) lacks accessible, affordable, and personalized care services.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Solution</h4>
+                                <p class="text-sm text-gray-600">On-demand platform connecting seniors with verified caregivers, health monitoring, and family coordination tools.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Target Audience</h4>
+                                <p class="text-sm text-gray-600">Seniors aged 60+, their adult children, and healthcare providers in urban and semi-urban areas.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Strategic Advantage</h4>
+                                <p class="text-sm text-gray-600">Cultural sensitivity, multilingual support, and integration with traditional family care systems.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Business Model</h4>
+                                <p class="text-sm text-gray-600">Service fees (15-20%) + monthly subscriptions + insurance partnerships + premium health monitoring.</p>
+                            </div>
                         </div>
                         
-                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
-                            <div class="lg:col-span-3">
-                                <div class="mb-6">
-                                    <h4 class="font-semibold text-xl mb-2 text-blue-700">Problem & Solution</h4>
-                                    <p class="text-gray-700 mb-2"><strong>Problem:</strong> ${idea.problem}</p>
-                                    <p class="text-gray-700"><strong>Solution:</strong> ${idea.solution}</p>
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                            <h4 class="font-semibold mb-3">Care Ecosystem</h4>
+                            <div class="grid grid-cols-2 gap-4 text-xs">
+                                <div class="text-center">
+                                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-1">🏥</div>
+                                    <span>Healthcare</span>
                                 </div>
-                                <div class="mb-6">
-                                    <h4 class="font-semibold text-xl mb-2 text-blue-700">Target Audience</h4>
-                                    <p class="text-gray-700">${idea.target_audience}</p>
+                                <div class="text-center">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mb-1">👨‍⚕️</div>
+                                    <span>Caregivers</span>
                                 </div>
-                                <div>
-                                    <h4 class="font-semibold text-xl mb-2 text-blue-700">Strategic Advantage</h4>
-                                    <p class="text-gray-700">${idea.leverage_factors}</p>
+                                <div class="text-center">
+                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mb-1">👴</div>
+                                    <span>Seniors</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-1">👨‍👩‍👧‍👦</div>
+                                    <span>Family</span>
                                 </div>
                             </div>
-                            <div class="lg:col-span-2">
-                                <div class="bg-blue-50 p-4 rounded-lg mb-6">
-                                    <h4 class="font-semibold text-xl mb-3 text-center text-blue-700">Competitive Landscape</h4>
-                                    <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
-                                        <div class="bg-gradient-to-r from-green-500 to-teal-500 h-4 rounded-full" style="width: ${100 - idea.competitive_landscape.level}%"></div>
-                                    </div>
-                                    <div class="text-center font-medium text-sm text-green-700 mb-2">Opportunity Score: ${100 - idea.competitive_landscape.level}%</div>
-                                    <p class="text-sm text-gray-600">${idea.competitive_landscape.text}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EV Charging SaaS -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg p-6 card-hover cursor-pointer glow-effect border border-gray-600 hover:border-yellow-400 transition-all duration-300" data-aos="fade-up" data-aos-delay="200" onclick="openModal('evcharging')">
+                    <div class="text-4xl mb-4 float-animation" style="filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.5));">⚡</div>
+                    <h3 class="text-xl font-bold text-white mb-2 hover:text-yellow-400 transition-colors">EV Charging & Management SaaS</h3>
+                    <p class="text-gray-300 mb-4">Smart charging infrastructure management for the EV revolution</p>
+                    <div class="opportunity-score text-2xl font-bold mb-4 hologram-text">Score: <span class="counter" data-target="82">0</span>/100</div>
+                    <div class="text-center">
+                        <span class="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-yellow-400 hover:to-orange-400 transition-all transform hover:scale-105 shadow-lg">
+                            Click to Explore <i class="fas fa-rocket ml-1 animate-pulse"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="card-details hidden mt-6 pt-6 border-t">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Problem</h4>
+                                <p class="text-sm text-gray-600">India's EV adoption is hindered by inadequate charging infrastructure and poor management systems.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Solution</h4>
+                                <p class="text-sm text-gray-600">Cloud-based platform for charging station management, user apps, payment processing, and analytics.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Target Audience</h4>
+                                <p class="text-sm text-gray-600">Charging station operators, fleet managers, residential complexes, and commercial establishments.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Strategic Advantage</h4>
+                                <p class="text-sm text-gray-600">Early market entry, government policy alignment, and scalable SaaS model with recurring revenue.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Business Model</h4>
+                                <p class="text-sm text-gray-600">Monthly SaaS subscriptions + transaction fees (2-3%) + hardware partnerships + premium analytics.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                            <h4 class="font-semibold mb-3">Platform Architecture</h4>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                                    <span>Station Management Dashboard</span>
                                 </div>
-                                <div class="bg-yellow-50 p-4 rounded-lg">
-                                    <h4 class="font-semibold text-xl mb-3 text-center text-yellow-700">Potential Business Model</h4>
-                                    <div class="h-64 w-full">
-                                        <canvas id="detailDoughnutChart"></canvas>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                    <span>User Mobile App</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
+                                    <span>Payment Gateway Integration</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-orange-500 rounded-full mr-2"></div>
+                                    <span>Analytics & Reporting</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vernacular Skill Development -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg p-6 card-hover cursor-pointer glow-effect border border-gray-600 hover:border-blue-400 transition-all duration-300" data-aos="fade-up" data-aos-delay="300" onclick="openModal('vernacular')">
+                    <div class="text-4xl mb-4 float-animation" style="filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));">📚</div>
+                    <h3 class="text-xl font-bold text-white mb-2 hover:text-blue-400 transition-colors">Vernacular Skill Development</h3>
+                    <p class="text-gray-300 mb-4">Local language learning platforms for skill development</p>
+                    <div class="opportunity-score text-2xl font-bold mb-4 hologram-text">Score: <span class="counter" data-target="86">0</span>/100</div>
+                    <div class="text-center">
+                        <span class="inline-block bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-blue-400 hover:to-indigo-400 transition-all transform hover:scale-105 shadow-lg">
+                            Click to Explore <i class="fas fa-rocket ml-1 animate-pulse"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="card-details hidden mt-6 pt-6 border-t">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Problem</h4>
+                                <p class="text-sm text-gray-600">Language barriers prevent millions from accessing quality skill development and employment opportunities.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Solution</h4>
+                                <p class="text-sm text-gray-600">AI-powered learning platform offering technical and soft skills training in regional languages.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Target Audience</h4>
+                                <p class="text-sm text-gray-600">Rural youth, blue-collar workers, women seeking employment, and small business owners.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Strategic Advantage</h4>
+                                <p class="text-sm text-gray-600">Cultural relevance, government skill development initiatives alignment, and untapped market potential.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Business Model</h4>
+                                <p class="text-sm text-gray-600">Course fees + corporate training contracts + government partnerships + certification programs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decentralized Waste Management -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg p-6 card-hover cursor-pointer glow-effect border border-gray-600 hover:border-green-400 transition-all duration-300" data-aos="fade-up" data-aos-delay="400" onclick="openModal('waste')">
+                    <div class="text-4xl mb-4 float-animation" style="filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));">♻️</div>
+                    <h3 class="text-xl font-bold text-white mb-2 hover:text-green-400 transition-colors">Decentralized Waste Management</h3>
+                    <p class="text-gray-300 mb-4">Community-based waste processing and recycling solutions</p>
+                    <div class="opportunity-score text-2xl font-bold mb-4 hologram-text">Score: <span class="counter" data-target="79">0</span>/100</div>
+                    <div class="text-center">
+                        <span class="inline-block bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-green-400 hover:to-emerald-400 transition-all transform hover:scale-105 shadow-lg">
+                            Click to Explore <i class="fas fa-rocket ml-1 animate-pulse"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="card-details hidden mt-6 pt-6 border-t">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Problem</h4>
+                                <p class="text-sm text-gray-600">India generates 62M tons of waste annually with inadequate processing infrastructure and environmental concerns.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Solution</h4>
+                                <p class="text-sm text-gray-600">Modular waste processing units with IoT monitoring, community engagement, and circular economy principles.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Target Audience</h4>
+                                <p class="text-sm text-gray-600">Municipal corporations, residential societies, commercial complexes, and industrial parks.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Strategic Advantage</h4>
+                                <p class="text-sm text-gray-600">Regulatory support, environmental impact, and sustainable revenue from recycled materials.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Business Model</h4>
+                                <p class="text-sm text-gray-600">Equipment sales/leasing + maintenance contracts + recycled material sales + carbon credit trading.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mental Wellness Platform -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg p-6 card-hover cursor-pointer glow-effect border border-gray-600 hover:border-pink-400 transition-all duration-300" data-aos="fade-up" data-aos-delay="500" onclick="openModal('mental')">
+                    <div class="text-4xl mb-4 float-animation" style="filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.5));">🧠</div>
+                    <h3 class="text-xl font-bold text-white mb-2 hover:text-pink-400 transition-colors">Personalized Mental Wellness</h3>
+                    <p class="text-gray-300 mb-4">AI-driven mental health support and therapy platforms</p>
+                    <div class="opportunity-score text-2xl font-bold mb-4 hologram-text">Score: <span class="counter" data-target="84">0</span>/100</div>
+                    <div class="text-center">
+                        <span class="inline-block bg-gradient-to-r from-pink-500 to-rose-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-pink-400 hover:to-rose-400 transition-all transform hover:scale-105 shadow-lg">
+                            Click to Explore <i class="fas fa-rocket ml-1 animate-pulse"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="card-details hidden mt-6 pt-6 border-t">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Problem</h4>
+                                <p class="text-sm text-gray-600">Mental health stigma and limited access to affordable, culturally sensitive therapy services in India.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Solution</h4>
+                                <p class="text-sm text-gray-600">Anonymous platform with AI screening, peer support, professional therapy, and wellness tracking.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Target Audience</h4>
+                                <p class="text-sm text-gray-600">Young professionals, students, working parents, and corporate employees seeking mental health support.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Strategic Advantage</h4>
+                                <p class="text-sm text-gray-600">Anonymity reduces stigma, AI personalization, and integration with traditional wellness practices.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Business Model</h4>
+                                <p class="text-sm text-gray-600">Subscription tiers + therapy session fees + corporate wellness programs + premium AI features.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sustainable Packaging -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg p-6 card-hover cursor-pointer glow-effect border border-gray-600 hover:border-orange-400 transition-all duration-300" data-aos="fade-up" data-aos-delay="600" onclick="openModal('packaging')">
+                    <div class="text-4xl mb-4 float-animation" style="filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.5));">📦</div>
+                    <h3 class="text-xl font-bold text-white mb-2 hover:text-orange-400 transition-colors">Sustainable Packaging Solutions</h3>
+                    <p class="text-gray-300 mb-4">Eco-friendly packaging alternatives for e-commerce and retail</p>
+                    <div class="opportunity-score text-2xl font-bold mb-4 hologram-text">Score: <span class="counter" data-target="81">0</span>/100</div>
+                    <div class="text-center">
+                        <span class="inline-block bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:from-orange-400 hover:to-amber-400 transition-all transform hover:scale-105 shadow-lg">
+                            Click to Explore <i class="fas fa-rocket ml-1 animate-pulse"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="card-details hidden mt-6 pt-6 border-t">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Problem</h4>
+                                <p class="text-sm text-gray-600">E-commerce boom creates massive packaging waste while regulations push for sustainable alternatives.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Solution</h4>
+                                <p class="text-sm text-gray-600">Biodegradable packaging made from agricultural waste with custom branding and logistics integration.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Target Audience</h4>
+                                <p class="text-sm text-gray-600">E-commerce companies, food delivery platforms, retail brands, and environmentally conscious businesses.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Strategic Advantage</h4>
+                                <p class="text-sm text-gray-600">Local raw material sourcing, cost competitiveness, and regulatory compliance advantage.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-purple-600">Business Model</h4>
+                                <p class="text-sm text-gray-600">Product sales + custom design services + bulk contracts + licensing technology to manufacturers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Structure -->
+    <div id="businessModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <div id="modalIcon" class="text-6xl mb-4 text-center"></div>
+                <h2 id="modalTitle" class="text-3xl font-bold text-white text-center mb-2"></h2>
+                <p id="modalSubtitle" class="text-xl text-white opacity-90 text-center"></p>
+            </div>
+            <div class="modal-body">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="space-y-6">
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                <h4 class="font-bold text-red-700 mb-2 flex items-center">
+                                    <i class="fas fa-exclamation-triangle mr-2"></i>Problem Statement
+                                </h4>
+                                <p id="modalProblem" class="text-gray-700"></p>
+                            </div>
+                            
+                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                <h4 class="font-bold text-green-700 mb-2 flex items-center">
+                                    <i class="fas fa-lightbulb mr-2"></i>Our Solution
+                                </h4>
+                                <p id="modalSolution" class="text-gray-700"></p>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                <h4 class="font-bold text-blue-700 mb-2 flex items-center">
+                                    <i class="fas fa-users mr-2"></i>Target Audience
+                                </h4>
+                                <p id="modalAudience" class="text-gray-700"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="space-y-6">
+                            <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                                <h4 class="font-bold text-purple-700 mb-2 flex items-center">
+                                    <i class="fas fa-chess-knight mr-2"></i>Strategic Advantage
+                                </h4>
+                                <p id="modalAdvantage" class="text-gray-700"></p>
+                            </div>
+                            
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                                <h4 class="font-bold text-yellow-700 mb-2 flex items-center">
+                                    <i class="fas fa-dollar-sign mr-2"></i>Business Model
+                                </h4>
+                                <p id="modalModel" class="text-gray-700"></p>
+                            </div>
+                            
+                            <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                                <h4 class="font-bold text-indigo-700 mb-2 flex items-center">
+                                    <i class="fas fa-chart-line mr-2"></i>Market Potential
+                                </h4>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-indigo-600" id="modalScalability">0</div>
+                                        <div class="text-gray-600">Scalability</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-600" id="modalProfitability">0</div>
+                                        <div class="text-gray-600">Profitability</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-blue-600" id="modalCompetition">0</div>
+                                        <div class="text-gray-600">Low Competition</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-purple-600" id="modalInvestment">0</div>
+                                        <div class="text-gray-600">Low Investment</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                `;
-                detailsSection.innerHTML = content;
-                detailsSection.classList.add('content-fade-in');
+                </div>
+                
+                <div id="modalFlow" class="mt-8 p-6 bg-gray-50 rounded-lg">
+                    <h4 class="font-bold text-gray-800 mb-4 text-center">Business Flow Diagram</h4>
+                    <div id="modalFlowContent"></div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button onclick="closeModal()" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-blue-600 transition-all transform hover:scale-105">
+                        Close Details <i class="fas fa-times ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                if (detailChartInstance) {
-                    detailChartInstance.destroy();
-                }
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full flex items-center justify-center mr-3 overflow-hidden">
+                            <img src="logo.png" alt="AishNar Groups Logo" class="w-8 h-8 object-contain">
+                        </div>
+                        <span class="text-xl font-semibold">AishNar Groups</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Future-Forward Business Insights for India</p>
+                    <p class="text-sm text-gray-500">Published by AishNar Groups | All rights reserved</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-envelope mr-2"></i> aishnar.official@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i> Suratgarh, Rajasthan</p>
+                        <p><i class="fab fa-instagram mr-2"></i> @aishnar.groups</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Report Details</h3>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-calendar mr-2"></i> Last Updated: <span id="currentDate"></span></p>
+                        <p><i class="fas fa-code-branch mr-2"></i> <a href="#" class="hover:text-purple-400">GitHub Repository</a></p>
+                        <p><i class="fas fa-star mr-2"></i> <a href="#" class="hover:text-purple-400">Fork this Project</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 AishNar Groups. Empowering India's entrepreneurial future through data-driven insights.</p>
+            </div>
+        </div>
+    </footer>
 
-                const doughnutCtx = document.getElementById('detailDoughnutChart').getContext('2d');
-                detailChartInstance = new Chart(doughnutCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: idea.business_model.map(item => item.label),
-                        datasets: [{
-                            data: idea.business_model.map(item => item.value),
-                            backgroundColor: ['#63B3ED', '#81E6D9', '#F6E05E', '#FC8181', '#A78BFA'], /* Softer colors */
-                            borderColor: '#FDFBF8',
-                            borderWidth: 4
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    font: {
-                                        size: 12,
-                                        family: 'Inter',
-                                    },
-                                    boxWidth: 15,
-                                    padding: 15,
-                                    color: '#4A5568' /* Muted legend text */
-                                }
-                            }
-                        },
-                        cutout: '60%'
-                    }
-                });
-
-                loadingSpinner.style.display = 'none'; // Hide spinner after content and charts are loaded
-            }
-
-            document.getElementById('report-date').textContent = new Date().toLocaleDateString('en-IN', {
-                year: 'numeric', month: 'long', day: 'numeric'
-            });
-
-            createRadarChart();
-            createDetailCards();
-            updateDetails(businessIdeas[0].id);
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
         });
+
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN');
+
+        // Smooth scroll function
+        function scrollToContent() {
+            document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        });
+
+        // Business data for modals
+        const businessData = {
+            agritech: {
+                icon: '🌿',
+                title: 'Hyperlocal Agri-Tech Platform',
+                subtitle: 'Connecting farmers directly with urban consumers through technology',
+                problem: 'Farmers struggle with middlemen, price volatility, and limited market access while consumers pay high prices for fresh produce.',
+                solution: 'Direct farmer-to-consumer platform with real-time pricing, quality assurance, and logistics optimization.',
+                audience: 'Urban households, restaurants, and small retailers seeking fresh, affordable produce.',
+                advantage: 'Hyperlocal focus reduces logistics costs and ensures freshness while building community trust.',
+                model: 'Commission-based revenue (8-12%) + subscription plans for premium features + logistics partnerships.',
+                metrics: { scalability: 9, profitability: 8, competition: 7, investment: 6 },
+                flow: `
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2 mx-auto">🚜</div>
+                            <span class="font-semibold">Farmer</span>
+                            <p class="text-xs text-gray-500">Lists produce</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-green-400 to-blue-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2 mx-auto">📱</div>
+                            <span class="font-semibold">Platform</span>
+                            <p class="text-xs text-gray-500">Matches orders</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-2 mx-auto">🚚</div>
+                            <span class="font-semibold">Logistics</span>
+                            <p class="text-xs text-gray-500">Delivers fresh</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-purple-400 to-orange-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-2 mx-auto">🏠</div>
+                            <span class="font-semibold">Consumer</span>
+                            <p class="text-xs text-gray-500">Receives order</p>
+                        </div>
+                    </div>
+                `
+            },
+            seniorcare: {
+                icon: '👵',
+                title: 'Personalized Senior Care Services',
+                subtitle: 'Technology-enabled care solutions for India\'s aging population',
+                problem: 'India\'s senior population (138M by 2025) lacks accessible, affordable, and personalized care services.',
+                solution: 'On-demand platform connecting seniors with verified caregivers, health monitoring, and family coordination tools.',
+                audience: 'Seniors aged 60+, their adult children, and healthcare providers in urban and semi-urban areas.',
+                advantage: 'Cultural sensitivity, multilingual support, and integration with traditional family care systems.',
+                model: 'Service fees (15-20%) + monthly subscriptions + insurance partnerships + premium health monitoring.',
+                metrics: { scalability: 7, profitability: 9, competition: 8, investment: 8 },
+                flow: `
+                    <div class="grid grid-cols-2 gap-6 text-sm">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-2 mx-auto">🏥</div>
+                            <span class="font-semibold">Healthcare</span>
+                            <p class="text-xs text-gray-500">Medical support</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2 mx-auto">👨‍⚕️</div>
+                            <span class="font-semibold">Caregivers</span>
+                            <p class="text-xs text-gray-500">Daily assistance</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2 mx-auto">👴</div>
+                            <span class="font-semibold">Seniors</span>
+                            <p class="text-xs text-gray-500">Receive care</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-2 mx-auto">👨‍👩‍👧‍👦</div>
+                            <span class="font-semibold">Family</span>
+                            <p class="text-xs text-gray-500">Stay connected</p>
+                        </div>
+                    </div>
+                `
+            },
+            evcharging: {
+                icon: '⚡',
+                title: 'EV Charging & Management SaaS',
+                subtitle: 'Smart charging infrastructure management for the EV revolution',
+                problem: 'India\'s EV adoption is hindered by inadequate charging infrastructure and poor management systems.',
+                solution: 'Cloud-based platform for charging station management, user apps, payment processing, and analytics.',
+                audience: 'Charging station operators, fleet managers, residential complexes, and commercial establishments.',
+                advantage: 'Early market entry, government policy alignment, and scalable SaaS model with recurring revenue.',
+                model: 'Monthly SaaS subscriptions + transaction fees (2-3%) + hardware partnerships + premium analytics.',
+                metrics: { scalability: 9, profitability: 7, competition: 6, investment: 5 },
+                flow: `
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2 mx-auto">🏢</div>
+                            <span class="font-semibold">Station Owner</span>
+                            <p class="text-xs text-gray-500">Manages stations</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-blue-400 to-yellow-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-2 mx-auto">☁️</div>
+                            <span class="font-semibold">SaaS Platform</span>
+                            <p class="text-xs text-gray-500">Processes data</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-yellow-400 to-green-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2 mx-auto">🚗</div>
+                            <span class="font-semibold">EV Owner</span>
+                            <p class="text-xs text-gray-500">Charges vehicle</p>
+                        </div>
+                    </div>
+                `
+            },
+            vernacular: {
+                icon: '📚',
+                title: 'Vernacular Skill Development',
+                subtitle: 'Local language learning platforms for skill development',
+                problem: 'Language barriers prevent millions from accessing quality skill development and employment opportunities.',
+                solution: 'AI-powered learning platform offering technical and soft skills training in regional languages.',
+                audience: 'Rural youth, blue-collar workers, women seeking employment, and small business owners.',
+                advantage: 'Cultural relevance, government skill development initiatives alignment, and untapped market potential.',
+                model: 'Course fees + corporate training contracts + government partnerships + certification programs.',
+                metrics: { scalability: 8, profitability: 8, competition: 7, investment: 7 },
+                flow: `
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-2 mx-auto">👨‍🎓</div>
+                            <span class="font-semibold">Learner</span>
+                            <p class="text-xs text-gray-500">Takes courses</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2 mx-auto">🤖</div>
+                            <span class="font-semibold">AI Platform</span>
+                            <p class="text-xs text-gray-500">Personalizes learning</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-blue-400 to-green-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2 mx-auto">🏢</div>
+                            <span class="font-semibold">Employer</span>
+                            <p class="text-xs text-gray-500">Hires skilled workers</p>
+                        </div>
+                    </div>
+                `
+            },
+            waste: {
+                icon: '♻️',
+                title: 'Decentralized Waste Management',
+                subtitle: 'Community-based waste processing and recycling solutions',
+                problem: 'India generates 62M tons of waste annually with inadequate processing infrastructure and environmental concerns.',
+                solution: 'Modular waste processing units with IoT monitoring, community engagement, and circular economy principles.',
+                audience: 'Municipal corporations, residential societies, commercial complexes, and industrial parks.',
+                advantage: 'Regulatory support, environmental impact, and sustainable revenue from recycled materials.',
+                model: 'Equipment sales/leasing + maintenance contracts + recycled material sales + carbon credit trading.',
+                metrics: { scalability: 6, profitability: 7, competition: 8, investment: 7 },
+                flow: `
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-2 mx-auto">🗑️</div>
+                            <span class="font-semibold">Waste Source</span>
+                            <p class="text-xs text-gray-500">Generates waste</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-red-400 to-yellow-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-2 mx-auto">⚙️</div>
+                            <span class="font-semibold">Processing Unit</span>
+                            <p class="text-xs text-gray-500">Processes waste</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-yellow-400 to-green-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2 mx-auto">📦</div>
+                            <span class="font-semibold">Recycled Products</span>
+                            <p class="text-xs text-gray-500">Sells materials</p>
+                        </div>
+                    </div>
+                `
+            },
+            mental: {
+                icon: '🧠',
+                title: 'Personalized Mental Wellness',
+                subtitle: 'AI-driven mental health support and therapy platforms',
+                problem: 'Mental health stigma and limited access to affordable, culturally sensitive therapy services in India.',
+                solution: 'Anonymous platform with AI screening, peer support, professional therapy, and wellness tracking.',
+                audience: 'Young professionals, students, working parents, and corporate employees seeking mental health support.',
+                advantage: 'Anonymity reduces stigma, AI personalization, and integration with traditional wellness practices.',
+                model: 'Subscription tiers + therapy session fees + corporate wellness programs + premium AI features.',
+                metrics: { scalability: 8, profitability: 8, competition: 6, investment: 6 },
+                flow: `
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2 mx-auto">👤</div>
+                            <span class="font-semibold">User</span>
+                            <p class="text-xs text-gray-500">Seeks support</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-2 mx-auto">🤖</div>
+                            <span class="font-semibold">AI Assessment</span>
+                            <p class="text-xs text-gray-500">Analyzes needs</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-2 mx-auto">👨‍⚕️</div>
+                            <span class="font-semibold">Therapist</span>
+                            <p class="text-xs text-gray-500">Provides care</p>
+                        </div>
+                    </div>
+                `
+            },
+            packaging: {
+                icon: '📦',
+                title: 'Sustainable Packaging Solutions',
+                subtitle: 'Eco-friendly packaging alternatives for e-commerce and retail',
+                problem: 'E-commerce boom creates massive packaging waste while regulations push for sustainable alternatives.',
+                solution: 'Biodegradable packaging made from agricultural waste with custom branding and logistics integration.',
+                audience: 'E-commerce companies, food delivery platforms, retail brands, and environmentally conscious businesses.',
+                advantage: 'Local raw material sourcing, cost competitiveness, and regulatory compliance advantage.',
+                model: 'Product sales + custom design services + bulk contracts + licensing technology to manufacturers.',
+                metrics: { scalability: 7, profitability: 8, competition: 7, investment: 6 },
+                flow: `
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2 mx-auto">🌾</div>
+                            <span class="font-semibold">Raw Materials</span>
+                            <p class="text-xs text-gray-500">Agricultural waste</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-green-400 to-orange-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-2 mx-auto">🏭</div>
+                            <span class="font-semibold">Manufacturing</span>
+                            <p class="text-xs text-gray-500">Creates packaging</p>
+                        </div>
+                        <div class="flex-1 h-0.5 bg-gradient-to-r from-orange-400 to-blue-400 mx-4"></div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2 mx-auto">🛒</div>
+                            <span class="font-semibold">E-commerce</span>
+                            <p class="text-xs text-gray-500">Uses packaging</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Modal functions
+        function openModal(businessId) {
+            const modal = document.getElementById('businessModal');
+            const data = businessData[businessId];
+            
+            if (!data) return;
+            
+            // Populate modal content
+            document.getElementById('modalIcon').textContent = data.icon;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalSubtitle').textContent = data.subtitle;
+            document.getElementById('modalProblem').textContent = data.problem;
+            document.getElementById('modalSolution').textContent = data.solution;
+            document.getElementById('modalAudience').textContent = data.audience;
+            document.getElementById('modalAdvantage').textContent = data.advantage;
+            document.getElementById('modalModel').textContent = data.model;
+            document.getElementById('modalFlowContent').innerHTML = data.flow;
+            
+            // Animate metrics
+            document.getElementById('modalScalability').textContent = data.metrics.scalability;
+            document.getElementById('modalProfitability').textContent = data.metrics.profitability;
+            document.getElementById('modalCompetition').textContent = data.metrics.competition;
+            document.getElementById('modalInvestment').textContent = data.metrics.investment;
+            
+            // Show modal
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('businessModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('businessModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Animated counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Intersection Observer for counters
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(document.querySelector('#content'));
+
+        // Radar Chart
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        const radarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Scalability', 'Profitability', 'Low Competition', 'Low Investment'],
+                datasets: [
+                    {
+                        label: 'Hyperlocal Agri-Tech',
+                        data: [9, 8, 7, 6],
+                        borderColor: 'rgb(34, 197, 94)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                        pointBackgroundColor: 'rgb(34, 197, 94)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(34, 197, 94)'
+                    },
+                    {
+                        label: 'Senior Care Services',
+                        data: [7, 9, 8, 8],
+                        borderColor: 'rgb(168, 85, 247)',
+                        backgroundColor: 'rgba(168, 85, 247, 0.2)',
+                        pointBackgroundColor: 'rgb(168, 85, 247)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(168, 85, 247)'
+                    },
+                    {
+                        label: 'EV Charging SaaS',
+                        data: [9, 7, 6, 5],
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        pointBackgroundColor: 'rgb(59, 130, 246)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(59, 130, 246)'
+                    },
+                    {
+                        label: 'Mental Wellness',
+                        data: [8, 8, 6, 6],
+                        borderColor: 'rgb(245, 101, 101)',
+                        backgroundColor: 'rgba(245, 101, 101, 0.2)',
+                        pointBackgroundColor: 'rgb(245, 101, 101)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(245, 101, 101)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: 'white',
+                        bodyColor: 'white',
+                        borderColor: 'rgba(255, 255, 255, 0.2)',
+                        borderWidth: 1
+                    }
+                }
+            }
+        });
+
+        // Chart animation on scroll
+        const chartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    radarChart.update('active');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        chartObserver.observe(document.getElementById('radarChart'));
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9663480744a0596a',t:'MTc1MzY5NDIyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
